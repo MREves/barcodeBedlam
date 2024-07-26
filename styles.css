@@ -1,0 +1,134 @@
+@property --gradient-angle {
+    syntax: "<angle>";
+    initial-value: 0deg;
+    inherits: false;
+}
+
+@keyframes rotation {
+    0% {--gradient-angle: 0deg;}
+    100% {--gradient-angle: 360deg;}
+}
+
+:root {
+    --clr-1: #00e1ff;
+    --clr-2: #b832f7;
+    --clr-3: #fd13d6;
+    --clr-4: #0044ff;
+    --clr-5: #7d009c;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Helvetica Neue';
+    background-color: #010a01;
+}
+
+h1 {
+    animation: flicker 1.5s infinite alternate;
+    text-align: center;
+    text-transform: uppercase;
+    padding-top: 3em;;
+}
+
+.neonText {
+    text-shadow:
+      0 0 7px #fff,
+      0 0 10px #fff,
+      0 0 21px #fff,
+      0 0 42px #02f0f0,
+      0 0 82px #02f0f0,
+      0 0 92px #02f0f0,
+      0 0 102px #02f0f0,
+      0 0 151px #02f0f0;
+  
+}
+
+/* Flickering animation */
+@keyframes flicker {
+
+    0%, 18%, 22%, 25%, 53%, 57%, 100% {
+    
+        text-shadow:
+        0 0 4px #fff,
+        0 0 11px #fff,
+        0 0 19px #fff,
+        0 0 40px #02f0f0,
+        0 0 80px #02f0f0,
+        0 0 90px #02f0f0,
+        0 0 100px #02f0f0,
+        0 0 150px #02f0f0;
+    
+    }
+    
+    20%, 24%, 55% {        
+        text-shadow: none;
+    }    
+    }
+
+h2 {
+    color: white;
+}
+
+#playerAreaContainer {
+    display: flex;
+    justify-content: space-around;
+}
+
+.playerArea {
+    margin-top: 8%;
+    height:400px;
+    width: 40%;
+    text-align: center;
+
+    /* alternative border style - glowing and moving */
+    /* https://www.youtube.com/watch?v=-VOUK-xFAyk */
+    /* background: var(--clr-5); */
+    background: #010a01;
+    position: relative;
+    border-radius: 5%;
+
+    /* border style one - neon glow static*/
+    /* 
+    border: 0.2rem solid #fff;
+    border-radius: 2rem;
+    padding: 0.4em;
+    box-shadow: 0 0 .2rem #fff,
+                0 0 .2rem #fff,
+                0 0 2rem #bc13fe,
+                0 0 0.8rem #bc13fe,
+                0 0 2.8rem #bc13fe,
+                inset 0 0 1.3rem #bc13fe; 
+    */
+}
+
+.playerArea::before,
+.playerArea::after {
+    content: "";
+    position: absolute;
+    inset: -0.5rem;
+    background: conic-gradient(
+        from var(--gradient-angle),    
+        var(--clr-3),
+        var(--clr-2),
+        var(--clr-1),
+        var(--clr-2),
+        var(--clr-3)
+    );
+    border-radius: inherit; 
+    animation: rotation 20s linear infinite;
+    z-index: -1;
+}
+
+.playerArea::after {
+    filter: blur(3.5rem);
+}
+
+
+@media screen and (prefers-reduced-motion) { 
+    h1 {
+      animation: none;
+    }
+  }
