@@ -91,6 +91,7 @@ h2 {
     border-radius: 5%;
 
     /* border style one - neon glow static*/
+    /* https://css-tricks.com/how-to-create-neon-text-with-css/ */
     /* 
     border: 0.2rem solid #fff;
     border-radius: 2rem;
