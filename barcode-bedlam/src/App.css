@@ -74,17 +74,13 @@ h3 {
 
 h2 {
   color: white;
-}
-
-#playerAreaContainer {
-  display: flex;
-  justify-content: space-around;
+  padding-top: 1em;
 }
 
 .playerArea {
-  margin-top: 8%;
+  margin: 2em;
   height:400px;
-  width: 40%;
+  min-width: 200px;
   text-align: center;
 
   /* alternative border style - glowing and moving */

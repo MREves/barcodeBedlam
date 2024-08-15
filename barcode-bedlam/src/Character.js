@@ -1,15 +1,15 @@
 import React from 'react';
 
-function Character({stats}) {
+function Character({card}) {
 
   return (
-    <div class="character">
-      <h3>Race: {stats.race}</h3>
-      <h3>Strength: {stats.strength}</h3>
-      <h3>endurance: {stats.endurance}</h3>
-      <h3>Agility: {stats.agility}</h3>
-      <h3>Hit Points: {stats.hitPoints}</h3>
-      <h3>Luck: {stats.luck}</h3>
+    <div className="character">
+      <h3>Hit Points: {card.hitPoints}</h3>
+      {/* <h3>Race: {stats.race}</h3> */}
+      <h3>Strength: {card.strength}</h3>
+      <h3>Endurance: {card.endurance}</h3>
+      <h3>Agility: {card.agility}</h3>
+      <h3>Luck: {card.luck}</h3>
     </div>
     
   )
