@@ -1,5 +1,5 @@
 version: '3'
-name: choose-your-own-adventure
+name: Barcode-Bedlam
 services:
   postgres:
     build:
