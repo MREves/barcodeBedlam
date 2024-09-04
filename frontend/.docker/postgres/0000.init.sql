@@ -37,8 +37,8 @@ CREATE TABLE "public.cards" (
   "hit_points" NUMERIC NOT NULL DEFAULT (0),
   "luck" NUMERIC NOT NULL DEFAULT (0),
   "strength" NUMERIC NOT NULL DEFAULT (0),
-  "image_data" TEXT
-  FOREIGN KEY ("race_id") REFERENCES "public.races" ("race_id"),
+  "image_data" TEXT,
+  FOREIGN KEY ("race_id") REFERENCES "public.races" ("race_id")
 );
 
 CREATE TABLE "public.deck_cards" (
@@ -72,7 +72,7 @@ CREATE TABLE "public.match_data" (
   "deck_id_1" SERIAL NOT NULL,
   "deck_id_2" SERIAL NOT NULL,
   "match_date_time" TIMESTAMP NOT NULL DEFAULT NOW(),
-  "winner_player_id" SERIAL NOT NULL
+  "winner_player_id" SERIAL NOT NULL,
   FOREIGN KEY ("arena_id") REFERENCES "public.arenas" ("arena_id"),
   FOREIGN KEY ("player_id_1") REFERENCES "public.players" ("player_id"),
   FOREIGN KEY ("player_id_2") REFERENCES "public.players" ("player_id"),
@@ -81,3 +81,50 @@ CREATE TABLE "public.match_data" (
   FOREIGN KEY ("winner_player_id") REFERENCES "public.players" ("player_id")
 );
 
+-------------------------------------------------------
+-- Below inserts test data into the tables created above
+-------------------------------------------------------
+
+INSERT INTO 
+  "public.players"("name")
+VALUES 
+  ('Matt'),
+  ('Drew');
+
+INSERT INTO
+  "public.friends"("player_id_1", "player_id_2")
+VALUES
+  (1,2);
+
+INSERT INTO
+  "public.races"("name", "agility_mod", "endurance_mod", "hit_points_mod", "luck_mod", "strength_mod")
+VALUES
+  ('Elf', 2, 0, 1, 1, -1),
+  ('Dwarf', -1, 3, 0, 0, 2);
+
+INSERT INTO
+  "public.decks"("player_id", "name")
+VALUES
+  (1, 'warrior'),
+  (2, 'tools of war');
+
+INSERT INTO
+  "public.cards"("race_id", "name", "agility", "endurance", "hit_points", "luck", "strength")
+VALUES
+  (1, 'Pirate', 49, 14, 11, 9, 101),
+  (1, 'Skeleton', 40, 9, 91, 9, 29),
+  (1, 'Ogre', 45, 12, 56, 7, 64),
+  (2, 'Dwarf1', 49, 14, 11, 9, 101),
+  (2, 'Dwarf2', 40, 9, 91, 9, 29),
+  (2, 'Dwarf3', 45, 12, 56, 7, 64);
+
+
+INSERT INTO
+  "public.deck_cards"("deck_id", "card_id")
+VALUES
+  (1, 1),
+  (1, 2),
+  (1, 3),
+  (2, 4),
+  (2, 5),
+  (2, 6);

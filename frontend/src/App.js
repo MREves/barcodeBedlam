@@ -1,14 +1,23 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import Player from './Player'
 import { Grid } from '@mui/material'
+import { useDatabaseContext } from './contexts/DatabaseContext';
 
 const App = () => {
+
+  const {getPlayers} = useDatabaseContext()
+  
   const [playerOneDeck, setPlayerOneDeck] = React.useState([])
   const [playerTwoDeck, setPlayerTwoDeck] = React.useState([])
   const [playerOneCard, setPlayerOneCard] = React.useState({})
   const [playerTwoCard, setPlayerTwoCard] = React.useState({})
   const [currentAttacker, setCurrentAttacker] = React.useState(1)
+
+  useEffect(()=>{
+    getPlayers()
+  }, [getPlayers])
+
 
   const generateCard = (id, barcode) => ({
     id,
