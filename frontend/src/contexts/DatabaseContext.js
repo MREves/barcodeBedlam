@@ -1,22 +1,14 @@
 import {createContext, useContext, useMemo, useCallback} from "react";
-import pg from 'pg'
+import axios from 'axios'
 
 export const DatabaseContext = createContext(null)
 
-export const DatabaseContextProvider = async({children})=>{
-
-  const { Client } = pg
-  const client = useMemo(()=>{new Client({
-    connectionString: "postgresql://postgres:postgres@localhost:5440/postgres"
-  })},[Client])
-
-  await client.connect()
+export const DatabaseContextProvider = ({children})=>{
   
   const getPlayers = useCallback(async()=>{
-    const res = await client.query('SELECT * FROM public.players')
-    console.log(res.rows[0].message) // Hello world!
-    await client.end()
-  },[client])
+    await axios.get('http://localhost:4000/players')
+    .then(response=>console.log(response))
+  }, [])
 
   const contextValue = useMemo(()=>{
     return{
