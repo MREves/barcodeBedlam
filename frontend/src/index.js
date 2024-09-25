@@ -3,13 +3,16 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import { HashRouter } from 'react-router-dom'
 import { DatabaseContextProvider } from './contexts/DatabaseContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <DatabaseContextProvider>
-      <App />
+      <HashRouter>
+        <App />
+      </HashRouter>
     </DatabaseContextProvider>
   </React.StrictMode>
 );

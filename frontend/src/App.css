@@ -77,6 +77,12 @@ h2 {
   padding-top: 1em;
 }
 
+.NavBar {
+  display: flex;
+  justify-content: space-around;
+  color: #fff;
+}
+
 .playerArea {
   margin: 2em;
   height:400px;

@@ -1,6 +1,6 @@
 import React from 'react';
 
-function Character({card}) {
+export function BattleCard({card}) {
 
   return (
     <div className="character">
@@ -15,4 +15,3 @@ function Character({card}) {
   )
 }
 
-export default Character

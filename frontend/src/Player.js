@@ -1,5 +1,5 @@
 import React from 'react';
-import Character from './Character';
+import {BattleCard} from './Character';
 import { Button, Chip, Grid } from '@mui/material';
 
 const Player = ({
@@ -36,7 +36,7 @@ const Player = ({
                 ? "warning"
                 : "error"
             } />
-          <Character card={currentCard}></Character>
+          <BattleCard card={currentCard}></BattleCard>
           <Button
             disabled={!isCurrentAttacker || dead}
             variant="contained"
