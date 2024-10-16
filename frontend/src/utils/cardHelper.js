@@ -2,7 +2,7 @@
 
 export const generateCard = (id, barcode) => ({
   id,
-  race: barcode % 11,
+  race: (barcode % 2)+1,
   agility: barcode % 73,
   endurance: barcode % 19,
   strength: barcode % 83 + 20,

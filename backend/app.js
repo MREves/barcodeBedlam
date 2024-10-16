@@ -47,8 +47,25 @@ const getPlayers = async (req, res) => {
   }
 };
 
+// Function to save a card into the database (req = request, res = response)
+const saveCard = async (req, res) => {
+  const card = req.body
+  const sql = 'INSERT INTO public.cards (race_id, name, agility, endurance, hit_points, luck, strength) VALUES ($1,$2,$3,$4,$5,$6,$7) RETURNING *;'
+  const values = [card.race, "name_placeholder", card.agility, card.endurance, card.hitPoints,  card.luck, card.strength]
+  try{
+    const results = await pool.query(sql, values)
+    res.status(201).json(results.rows[0])
+  } 
+  catch (error) {
+      res.status(500).send(error)
+    }
+  }
+
 // Define the /players route
 app.get('/players', getPlayers);
+
+// Define the save card route
+app.post('/saveCard', saveCard)
 
 // Start the server
 app.listen(port, () => {

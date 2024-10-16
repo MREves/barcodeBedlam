@@ -10,11 +10,16 @@ export const DatabaseContextProvider = ({children})=>{
     .then(response=>console.log(response))
   }, [])
 
+  const saveCard = useCallback(async(cardData)=>{
+    const response = await axios.post('http://localhost:4000/saveCard', cardData)
+    return response.data
+  }, [])
+
   const contextValue = useMemo(()=>{
     return{
-      getPlayers
+      getPlayers, saveCard
     }
-  }, [getPlayers])
+  }, [getPlayers, saveCard])
 
   return(
     <DatabaseContext.Provider value={contextValue}>
@@ -32,3 +37,4 @@ export const useDatabaseContext = ()=>{
   }
   return context
 }
+
